@@ -40,3 +40,15 @@ function score(sequences, s, l)
     profile = getprofile(alignment)
     return score(profile)
 end
+
+function probscore(motif, profile)
+    """
+    Calculate the probability of seeing *motif* given the matrix *profile*.
+    Return a probability in [0, 1]
+    """
+
+    # normalize profile
+    P = profile ./ sum(profile, 1)
+    
+    return prod(P[DNA[motif[[i]]], i] for i = 1:length(motif))
+end
