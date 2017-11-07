@@ -1,9 +1,9 @@
 # data generation functions for motif finding
 
-DNA = ["A", "T", "C", "G"]
+DNA_arr = ["A", "T", "C", "G"]
 
 # generate a random DNA sequence of length n
-genseq(n) = join([DNA[i] for i in rand(1:4, 10)])
+genseq(n) = join([DNA_arr[i] for i in rand(1:4, 10)])
 
 function gendata(count, len, motiflen, num_mutations)
     """
@@ -15,8 +15,8 @@ function gendata(count, len, motiflen, num_mutations)
     motifs in each sequence.
     """
 
-    motif_arr = [DNA[i] for i in rand(1:4, motiflen)]
-    seqs_arr = [DNA[i] for i in rand(1:4, count, len)]
+    motif_arr = [DNA_arr[i] for i in rand(1:4, motiflen)]
+    seqs_arr = [DNA_arr[i] for i in rand(1:4, count, len)]
 
     motif_ind = rand(1:len - motiflen + 1, count)
 
@@ -28,7 +28,7 @@ function gendata(count, len, motiflen, num_mutations)
             motif_arrᵢ = copy(motif_arr)
             for d = 1:num_mutations
                 # add a random mutation to motif
-                motif_arrᵢ[rand(1:motiflen)] = DNA[rand(1:4)]
+                motif_arrᵢ[rand(1:motiflen)] = DNA_arr[rand(1:4)]
                 
             end
             seqs_arr[i, motif_ind[i]:motif_ind[i]+motiflen-1] = motif_arrᵢ
