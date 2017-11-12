@@ -5,15 +5,15 @@ DNA_arr = ["A", "T", "C", "G"]
 # generate a random DNA sequence of length n
 genseq(n) = join([DNA_arr[i] for i in rand(1:4, 10)])
 
+"""
+Generate *count* sequences of length *len*, each with a motif of length
+*motiflen* is inserted into a random index. *num_mutations* mutations are 
+added randomly to each motif in each sequence.
+
+Return an array of sequences, the motif, and the indices of the inserted 
+motifs in each sequence.
+"""
 function gendata(count, len, motiflen, num_mutations)
-    """
-    Generate *count* sequences of length *len*, each with a motif of length
-    *motiflen* is inserted into a random index. *num_mutations* mutations are 
-    added randomly to each motif in each sequence.
-    
-    Return an array of sequences, the motif, and the indices of the inserted 
-    motifs in each sequence.
-    """
 
     motif_arr = [DNA_arr[i] for i in rand(1:4, motiflen)]
     seqs_arr = [DNA_arr[i] for i in rand(1:4, count, len)]
